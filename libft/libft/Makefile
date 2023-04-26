@@ -6,32 +6,36 @@
 #    By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 15:32:35 by kquetat-          #+#    #+#              #
-#    Updated: 2023/04/12 10:18:14 by kquetat-         ###   ########.fr        #
+#    Updated: 2023/04/26 14:28:01 by kquetat-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### Colors ###
-ITALIC		=\033[3m
-BOLD		=\033[1m
-LGREEN		=\033[1;32m
-PALEBLUE	=\033[38;5;153m
-RESET		=\033[0m
+ITALIC		=	\033[3m
+BOLD		=	\033[1m
+LGREEN		=	\033[1;32m
+PALEBLUE	=	\033[38;5;153m
+CREAM		=	\033[38;5;255m
+CHAMPAGNE	=	\033[38;5;224m
+RESET		=	\033[0m
 
-### Name of library ###
+### Name of library & other variables ###
 NAME 		=	libft.a
 HEADER_PATH	=	../inc/
 SRCS_PATH	=	srcs/
+COUNTER		=	0
 
 ### Compiler & Other variables ###
-CC		= clang
-CFLAGS	= -Wall -Wextra -Werror
+CC		=	gcc
+CFLAGS	=	-Wall -Wextra -Werror
 
 %.o: %.c
+	@(eval COUNTER = $(shell expr $(COUNTER) + 1))
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "$(PALEBLUE)$(BOLD)$(ITALIC)Loading: $(RESET)""$(LGREEN)<$<> \033[K\r$(RESET)"
+	@echo "$(PALEBLUE)$(BOLD)$(ITALIC)Loading: $(RESET)"
+	@
 
-OBJ			=	$(SRCS:.c=.o)
-OBJ_BONUS	=	$(SRCS_BONUS:.c=.o)
+OBJ	=	$(SRCS:.c=.o)
 
 RM	=	rm -f
 
@@ -42,30 +46,24 @@ SRCS	=	${addprefix $(SRCS_PATH), ft_isalpha.c ft_isdigit.c ft_isalnum.c \
 			ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memcmp.c ft_strnstr.c \
 			ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-			ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c}
-
-### Bonus part ###
-SRCS_BONUS =	${addprefix $(SRCS_PATH), ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
-				ft_lstlast.c ft_lstadd_back.c}
+			ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
+			ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c}
 
 ### Rules ###
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	@echo "\n"
-	@echo -e "$(YELLOW)Creating libft.a...$(RESET)"
 	@ar rcs $(NAME) $(OBJ)
-	@echo -e "$(GREEN)libft.a created !$(RESET)"
-
-bonus:	$(OBJ) $(OBJ_BONUS)
-	@ar rcs $(NAME) $(OBJ) $(OBJ_BONUS)
+	@printf "$(ITALIC)$(BOLD)$(PALEBLUE)[LIBFT]$(RESET) Compiled!"
 
 clean:
-	@$(RM) $(OBJ) $(OBJ_BONUS)
+	@$(RM) $(OBJ)
+	@printf "$(ITALIC)$(BOLD)$(CREAM)CLEANED [LIBFT .o] files$(RESET)"
 
 fclean:	clean
-	@$(RM) $(NAME) $(OBJ_BONUS)
+	@$(RM) $(NAME)
+	@printf "$(ITALIC)$(BOLD)$(CHAMPAGNE)libft.a CLEANED$(RESET)"
 
 re:	fclean all
 
-.PHONY:	all clean fclean re bonus
+.PHONY:	all clean fclean re
