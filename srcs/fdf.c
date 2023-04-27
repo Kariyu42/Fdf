@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*    fdf.c                                             :+:      :+:    :+:   */
+/*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:21:41 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/04/26 12:26:58 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:18:42 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-/*static void	ft_parsing(int argc, char **argv)
+static void	init_struct(t_struct *map_t)
 {
-	
-}*/
+	map_t->map = 0;
+	map_t->base_len = 0;
+}
 
 int	main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*mlx_win;
+	void		*mlx;
+	t_struct	map_t;
+	void		*mlx_win;
 
-	if (argc != 2)
+	init_struct(&map_t);
+	if (init_inspect(argc, argv, &map_t) == ERROR)
+	{
+		perror("Invalid input\n");
 		return (0);
+	}
+	save_map_figures(&map_t, argv[1]);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "FDF");
-	//ft_parsing(argc, argv);
 	return (0);
 }
