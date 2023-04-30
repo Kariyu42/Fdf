@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:55:49 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/04/27 18:55:43 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/04/30 13:45:04 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_struct
 }	t_struct;
 
 /* Library */
+# include <stdio.h>
 # include <mlx.h>
 # include <math.h>
 # include <fcntl.h>
@@ -33,5 +34,11 @@ typedef struct s_struct
 /*######## SOURCES ########*/
 /* Map Errors */
 int	init_inspect(int argc, char **argv, t_struct *map_t);
+
+/* Map Parsing */
+void	save_map_figures(t_struct *map_t, char *map_file);
+
+/* print; to be removed... */
+void	print_saved_figures(int *map, int len);
 
 #endif

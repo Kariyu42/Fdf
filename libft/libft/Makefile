@@ -6,7 +6,7 @@
 #    By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 15:32:35 by kquetat-          #+#    #+#              #
-#    Updated: 2023/04/27 13:21:33 by kquetat-         ###   ########.fr        #
+#    Updated: 2023/04/30 13:34:28 by kquetat-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ $(NAME):	$(OBJ)
 
 clean:
 	@$(RM) $(OBJ)
-	@printf "\n\t$(ITALIC)$(BOLD)$(CREAM)CLEANED [LIBFT .o] files$(RESET)\n"
+	@printf "\n\t$(ITALIC)$(BOLD)$(CREAM)CLEANED [$(BEIGE)LIBFT .o$(CREAM)] files$(RESET)\n"
 
 fclean:	clean
 	@$(RM) $(NAME)

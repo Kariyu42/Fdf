@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:21:41 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/04/27 18:18:42 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/04/30 14:33:08 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,19 @@ static void	init_struct(t_struct *map_t)
 
 int	main(int argc, char **argv)
 {
-	void		*mlx;
+	//void		*mlx;
 	t_struct	map_t;
-	void		*mlx_win;
+	//void		*mlx_win;
 
 	init_struct(&map_t);
 	if (init_inspect(argc, argv, &map_t) == ERROR)
 	{
-		perror("Invalid input\n");
-		return (0);
+		perror("Invalid input");
+		return (1);
 	}
 	save_map_figures(&map_t, argv[1]);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "FDF");
+	
+	//mlx = mlx_init();
+	//mlx_win = mlx_new_window(mlx, 1920, 1080, "FDF");
 	return (0);
 }
