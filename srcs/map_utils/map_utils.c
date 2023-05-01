@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:31:56 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/04/30 14:31:02 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/01 10:47:16 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	save_map_figures(t_struct *map_t, char *map_file)
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("Invalid fd: Tried to open in save_map_figures();\n");
+		perror("Invalid fd; in save_map_figures()");
 		exit(EXIT_FAILURE);
 	}
 	while (1)

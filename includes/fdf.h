@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:55:49 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/04/30 13:45:04 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:40:27 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@
 /* Struct */
 typedef struct s_struct
 {
-	int	**map;
-	int	base_len;
+	void	*mlx_id;
+	void	*mlx_win;
+	int		height;
+	int		width;
+	int		**map;
+	int		base_len;
 }	t_struct;
 
 /* Library */
