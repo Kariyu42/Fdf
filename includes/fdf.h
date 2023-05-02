@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:55:49 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/01 11:40:27 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:09:29 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,18 @@
 # define VALID 0
 
 /* Struct */
+/*typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		line_len;
+}	t_data;*/
+
 typedef struct s_struct
 {
 	void	*mlx_id;
 	void	*mlx_win;
+	void	*mlx_addr;
 	int		height;
 	int		width;
 	int		**map;

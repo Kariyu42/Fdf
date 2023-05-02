@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:21:41 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/01 12:11:00 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:17:27 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,14 @@ int	main(int argc, char **argv)
 	map_t.mlx_win = mlx_new_window(map_t.mlx_id, map_t.width, map_t.height, "FDF");
 	if (map_t.mlx_win == NULL)
 		exit(EXIT_FAILURE);
+	int	i = 0;
+	int	y = 0;
+	while (i < 100)
+	{
+		mlx_pixel_put(map_t.mlx_id, map_t.mlx_win, i, y, 44569);
+		i++;
+		y++;
+	}
+	mlx_loop(map_t.mlx_id);
 	return (0);
 }
