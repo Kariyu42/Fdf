@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:21:41 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/02 14:17:27 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:20:38 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	init_struct(t_struct *map_t)
 {
 	map_t->map = 0;
 	map_t->base_len = 0;
-	map_t->width = 1920;
-	map_t->height = 1080;
+	map_t->width = 920;
+	map_t->height = 700;
 }
 
 int	main(int argc, char **argv)
@@ -34,9 +34,9 @@ int	main(int argc, char **argv)
 	map_t.mlx_win = mlx_new_window(map_t.mlx_id, map_t.width, map_t.height, "FDF");
 	if (map_t.mlx_win == NULL)
 		exit(EXIT_FAILURE);
-	int	i = 0;
-	int	y = 0;
-	while (i < 100)
+	int	i = 20;
+	int	y = 20;
+	while (i < 120)
 	{
 		mlx_pixel_put(map_t.mlx_id, map_t.mlx_win, i, y, 44569);
 		i++;

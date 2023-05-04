@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:31:56 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/01 10:47:16 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:25:15 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static int	*collect_figures(char *line)
 	i = 0;
 	tmp = ft_split(line, ' ');
 	tab = malloc(sizeof(int) * length_data(tmp));
+	if (!tab)
+		exit(EXIT_FAILURE);
 	while (tmp[i])
 	{
 		tab[i] = ft_atoi(tmp[i]);
@@ -61,7 +63,7 @@ void	save_map_figures(t_struct *map_t, char *map_file)
 	char	*line;
 
 	i = 0;
-	map_t->map = malloc(sizeof(int) * map_t->base_len);
+	map_t->map = malloc(sizeof(int *) * map_t->base_len + 1);
 	if (!map_t->map)
 		exit(EXIT_FAILURE);
 	fd = open(map_file, O_RDONLY);
@@ -78,4 +80,5 @@ void	save_map_figures(t_struct *map_t, char *map_file)
 		map_t->map[i] = collect_figures(line);
 		i++;
 	}
+	fd = close(fd);
 }

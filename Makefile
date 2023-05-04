@@ -6,17 +6,21 @@
 #    By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/25 14:06:13 by kquetat-          #+#    #+#              #
-#    Updated: 2023/04/30 14:00:43 by kquetat-         ###   ########.fr        #
+#    Updated: 2023/05/03 15:40:46 by kquetat-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-### Name of executable ###
-NAME			=	fdf
-HEADER			=	includes/
-LIBFT			=	libft/libft/
-SRCS_PATH		=	srcs/
-GNL_PATH		=	libft/get_next_line/
-FT_PRINTF_PATH	=	libft/ft_printf/
+### Binary | libmlx path & .h | libft ###
+NAME	=	fdf
+HEADER	=	./includes/
+LIBFT	=	./libft/libft/
+LIBMLX	=	/usr/local/lib/
+INC		=	/usr/local/include/
+
+### Paths to main & other functions ###
+SRCS_PATH		=	./srcs/
+FT_PRINTF_PATH	=	./libft/ft_printf/
+GNL_PATH		=	./libft/get_next_line/
 
 ### Colors ###
 ITALIC		=	\033[3m
@@ -28,6 +32,11 @@ OFF_WHITE	=	\033[38;5;251m
 EGGSHELL	=	\033[38;5;251m
 CHAMPAGNE	=	\033[38;5;224m
 
+### Debug ###
+ifdef DEBUG
+CFLAGS	+=	-fsanitize=address -g3
+endif
+
 ### Loading Bar ###
 COUNTER		=	0
 CUR_UP		=	\033[A
@@ -38,12 +47,13 @@ BAR			=	$(shell expr 27 \* $(COUNTER) / $(TOTAL_SRCS))
 ### Compilation & flags ###
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
+OFLAGS	=	-L$(LIBMLX) -lmlx -framework OpenGL -framework AppKit
 
 RM	=	rm -f
 
 %.o: %.c
 	@$(eval COUNTER = $(shell expr $(COUNTER) + 1))
-	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo " $(PALEBLUE)$(BOLD)$(ITALIC) Loading [$(LGREEN)FDF$(PALEBLUE)]: $(RESET)"
 	@printf "\t\t\t$(BOLD)$(PALEBLUE)[$(BEIGE)%-27.$(BAR)s$(PALEBLUE)] %d/%d [%d%%]" "===========================" $(COUNTER) $(TOTAL_SRCS) $(PERCENT)
 	@echo "$(CUR_UP)$(CUR_UP)"
@@ -65,8 +75,11 @@ all:	$(NAME)
 $(NAME):	$(OBJS)
 	@printf "\n\n\n"
 	@make -C $(LIBFT)
-	@$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $(LIBFT)libft.a $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OFLAGS) $(LIBFT)libft.a $(OBJS) -o $(NAME)
 	@printf "\n\n\t $(BOLD)$(ITALIC)$(EGGSHELL)FDF COMPILED $(RESET)\n\n"
+
+debug:
+	$(MAKE) DEBUG=1
 
 clean:
 	@$(RM) $(OBJS)
@@ -79,4 +92,4 @@ fclean:	clean
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all debug clean fclean re
