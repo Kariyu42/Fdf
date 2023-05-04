@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:31:56 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/03 21:25:15 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/04 10:33:07 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	save_map_figures(t_struct *map_t, char *map_file)
 	while (1)
 	{
 		line = get_next_line(fd);
+		if (map_t->max_line_len < (int)ft_strlen(line))
+			map_t->max_line_len = (int)ft_strlen(line);
 		if (line == NULL)
 			break ;
 		map_t->map[i] = collect_figures(line);
