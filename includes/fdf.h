@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:55:49 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/04 13:11:09 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/05 19:55:11 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
-typedef struct s_struct
+typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	t_data	*var;
+	int		rows;
+	t_data	*image;
 	t_point	**map;
-}	t_struct;
+}	t_mlx;
 
 /* Library */
 # include <stdio.h>
@@ -53,14 +54,13 @@ typedef struct s_struct
 # include "../libft/inc/libft.h"
 
 /*######## SOURCES ########*/
-/* Map Errors */
-int	init_inspect(int argc, char **argv, t_struct *map_t);
-
 /* Map Parsing */
-void	save_map_figures(t_struct *map_t, char *map_file);
-
+int		save_map_figures(t_mlx *var, char *map_file);
+int		count_columns(char *filename);
+void	free_split(char **split);
+void	collect_xyz_data(t_mlx *var, char *filename, int columns);
 /* Drawing utils */
-void	draw_map(t_struct *map_t);
+void	draw_map(t_mlx *var);
 /* print; to be removed... */
 void	print_saved_figures(int *map, int len);
 

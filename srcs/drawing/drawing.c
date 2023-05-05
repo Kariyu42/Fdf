@@ -6,13 +6,13 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 10:28:37 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/04 10:38:45 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:02:08 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-void	draw_map(t_struct *map_t)
+void	draw_map(t_struct *var)
 {
 	
 }

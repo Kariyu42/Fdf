@@ -6,32 +6,36 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:21:41 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/04 13:16:15 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:49:01 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	init_struct(t_struct *map_t)
+static void	init_struct(t_mlx *var)
 {
-	map_t->var->
+	var->rows = 0;
+	var->image->addr = NULL;
+	var->image->bits_per_pixel = 0;
+	var->image->line_length = 0;
+	var->image->endian = 0;
 }
 
 int	main(int argc, char **argv)
 {
-	t_struct	map_t;
+	t_mlx	var;
 
-	init_struct(&map_t);
-	if (init_inspect(argc, argv, &map_t) == ERROR)
+	init_struct(&var);
+	if (argc != 2 || save_map_figures(&var, argv[1]) == ERROR)
 		exit(EXIT_FAILURE);
-	save_map_figures(&map_t, argv[1]);
-	map_t.mlx = mlx_init();
-	if (map_t.mlx == NULL)
+	var.mlx = mlx_init();
+	if (var.mlx == NULL)
 		exit(EXIT_FAILURE);
-	map_t.win = mlx_new_window(map_t.mlx, WIDTH, HEIGHT, "FDF");
-	if (map_t.win == NULL)
+	var.win = mlx_new_window(var.mlx, WIDTH, HEIGHT, "FDF");
+	if (var.win == NULL)
 		exit(EXIT_FAILURE);
-	draw_map(&map_t);
-	mlx_loop(map_t.mlx);
+	var.image->img = mlx_new_image(var.mlx, WIDTH, HEIGHT);
+	draw_map(&var);
+	mlx_loop(var.mlx);
 	return (0);
 }
