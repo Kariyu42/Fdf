@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:46:16 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/06 23:25:01 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/07 00:23:36 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,6 @@ void	collect_xyz_data(t_mlx *var, char *filename, int columns)
 	{
 		printf("je rentre %d fois dans la boucle\n", i);
 		tmp = get_next_line(fd);
-		var->map[i] = malloc(sizeof(t_point) * columns);
-		if (!var->map[i])
-			exit(EXIT_FAILURE);
 		var->map[i] = parse_line(tmp, columns, i);
 		free(tmp);
 	}
