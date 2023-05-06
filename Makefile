@@ -6,7 +6,7 @@
 #    By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/25 14:06:13 by kquetat-          #+#    #+#              #
-#    Updated: 2023/05/03 15:40:46 by kquetat-         ###   ########.fr        #
+#    Updated: 2023/05/06 23:18:24 by kquetat-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,11 +55,11 @@ RM	=	rm -f
 	@$(eval COUNTER = $(shell expr $(COUNTER) + 1))
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo " $(PALEBLUE)$(BOLD)$(ITALIC) Loading [$(LGREEN)FDF$(PALEBLUE)]: $(RESET)"
-	@printf "\t\t\t$(BOLD)$(PALEBLUE)[$(BEIGE)%-27.$(BAR)s$(PALEBLUE)] %d/%d [%d%%]" "===========================" $(COUNTER) $(TOTAL_SRCS) $(PERCENT)
+	@printf "\t\t\t$(BOLD)$(PALEBLUE)[$(BEIGE)%-27.$(BAR)s$(PALEBLUE)] %d/%d [%d%%]$(RESET)" "===========================" $(COUNTER) $(TOTAL_SRCS) $(PERCENT)
 	@echo "$(CUR_UP)$(CUR_UP)"
 
 ### Source Files ###
-SRCS	=	${addprefix ${SRCS_PATH}, fdf.c map_utils/map_error.c map_utils/map_utils.c} \
+SRCS	=	${addprefix ${SRCS_PATH}, fdf.c map_utils/map_utils.c map_utils/map_utils2.c} \
 			${addprefix ${FT_PRINTF_PATH}, ft_printf.c srcs/add_numflags.c srcs/hexa_padd.c \
 			srcs/print_char.c srcs/print_str.c srcs/ft_get_precision.c srcs/int_precision.c \
 			srcs/print_hexa.c srcs/print_unsigned.c srcs/ft_get_width.c srcs/print_addr.c \

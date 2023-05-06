@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:21:41 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/05 15:49:01 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:24:20 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	init_struct(t_mlx *var)
 {
+	var->mlx = NULL;
+	var->win = NULL;
 	var->rows = 0;
 	var->image->addr = NULL;
 	var->image->bits_per_pixel = 0;
@@ -34,8 +36,8 @@ int	main(int argc, char **argv)
 	var.win = mlx_new_window(var.mlx, WIDTH, HEIGHT, "FDF");
 	if (var.win == NULL)
 		exit(EXIT_FAILURE);
-	var.image->img = mlx_new_image(var.mlx, WIDTH, HEIGHT);
-	draw_map(&var);
+//	var.image->img = mlx_new_image(mlx, WIDTH, HEIGHT);
+//	draw_map(&var);
 	mlx_loop(var.mlx);
 	return (0);
 }

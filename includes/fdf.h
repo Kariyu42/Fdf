@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:55:49 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/05 19:55:11 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/06 11:38:32 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	int		rows;
 	t_data	*image;
 	t_point	**map;
+	int		rows;
 }	t_mlx;
 
 /* Library */

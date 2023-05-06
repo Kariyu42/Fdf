@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:31:56 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/05 19:55:37 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:24:47 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	check_coordinates(char *number)
 	return (VALID);
 }
 
-static int	line_coordinates(t_mlx *var, char *line)
+static int	line_coordinates(char *line)
 {
 	int		i;
 	char	**map_part;
@@ -65,9 +65,10 @@ static int	check_map(int fd, t_mlx *var)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (line_coordinates(var, line) == ERROR)
+		if (line_coordinates(line) == ERROR)
 			return (ERROR);
 		var->rows += 1;
+		printf("number of rows = %d\n", var->rows);
 	}
 	return (VALID);
 }
@@ -100,4 +101,5 @@ int	save_map_figures(t_mlx *var, char *map_file)
 	if (col_len == ERROR)
 		return (ERROR);
 	collect_xyz_data(var, map_file, col_len);
+	return (VALID);
 }
