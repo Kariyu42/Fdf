@@ -21,7 +21,7 @@ $ gcc -I /usr/local/include <nom_du_binaire> -L /usr/local/lib -lmlx -framework 
 ```
 
 # How to create an image in MLX?
-```c
+```c++
 #include <mlx.h>
 
 int	main(void)
@@ -40,7 +40,7 @@ int	main(void)
 used to create a __new window__ or graphical frame in the MinilibX graphics context, which can be used to display graphics and handle user input. To use this function, we need a handle to the graphics context which is returned by the __mlx_init()__ function.
 
 - __void *mlx_new_image(void *mlx_ptr, int width, int height);__ = <br>
-used to create a new image or bitmap in memory that can be used for drawing graphics or storing pixel data. After creating the new image, we can proceed with other graphical-related code that makes use of the image, such as drawing graphics, manipulating pixel data, and copying the image to a window for display.
+used to create a new image or bitmap in memory that can be used for drawing graphics or storing pixel data. After creating the new image, we can proceed with other graphical-related code that makes use of the image, such as drawing graphics, manipulating pixel data, and copying the image to a window for display. <br>___Overall___, the mlx_new_image function provides us with a convenient way to create and manipulate images in the Minilibx, which is essential for creating graphical applications.
 
 - __void mlx_loop(void *mlx_ptr);__ = to enter the __graphics event loop__, which listens for user input and other events, and handles them by calling registered event handling functions. The function does not return any value. Instead, it enters an infinite loop that listens for events and calls registered event handling functions as necessary. While this function is running, itlistens for events such as mouse clicks, keyboard input, and window resizing. When an event occurs, it calls the registered event handling functions, which can perform actions such as redrawing the graphics, updating the window, or changing the program state.
 
@@ -63,7 +63,7 @@ The function takes four arguments:<br>
 - __endian__: filled with the endianness of the pixel data in the image.
 
 ## Example
-```c
+```c++
 #include <mlx.h>
 
 # define WIDTH 1920
@@ -95,3 +95,21 @@ int main(void)
 ```
 
 In the example above we first initialize the MiniLibX library by calling mlx_init and obtaining a handle to the graphics context. We then create a new image by calling mlx_new_image and obtain information about the image data by calling mlx_get_data_addr. The function fills the bits_per_pixel, size_line, and endian variables with information about the image data layout, and returns a char pointer to the start of the image data.
+
+- Once you have used the mlx_get_data_addr function to get a pointer to the image data, you can use this pointer to modify the pixel data of the image.
+
+The image data is stored as a contiguous block of memory, with each pixel represented by a series of bytes according to the image's format. You can use pointer arithmetic to navigate through this block of memory and modify individual pixels by changing their color values.
+
+For example, if you wanted to set the color of the pixel at position (x,y) in the image to red, you could use the following code:
+
+```c++
+char *img_data = mlx_get_data_addr(img_ptr, &bits_per_pixel, &size_line, &endian);
+
+int pixel_index = (y * size_line) + (x * (bits_per_pixel / 8));
+
+unsigned int color = mlx_get_color_value(mlx_ptr, 0xFF0000); // red color
+
+*(unsigned int *)(img_data + pixel_index) = color;
+```
+
+

@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:31:56 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/06 23:24:47 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:38:40 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,29 @@ static int	line_coordinates(char *line)
 			return (ERROR);
 		i++;
 	}
+	free_split(map_part); // free map_part
 	return (VALID);
 }
 
-static int	check_map(int fd, t_mlx *var)
+static int	check_map(char *map, t_mlx *var)
 {
+	int		fd;
 	char	*line;
 
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		return (fail_open_file(ERROR));
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
 		if (line_coordinates(line) == ERROR)
-			return (ERROR);
+			return (free_line(line, ERROR));
+		free(line);
 		var->rows += 1;
-		printf("number of rows = %d\n", var->rows);
 	}
+	fd = close(fd);
 	return (VALID);
 }
 
@@ -88,18 +94,12 @@ static int	check_invalid_map(char *file)
 
 int	save_map_figures(t_mlx *var, char *map_file)
 {
-	int	fd;
-	int	col_len;
-
 	if (check_invalid_map(map_file) == ERROR)
 		return (ERROR);
-	fd = open(map_file, O_RDONLY);
-	if (fd < 0 || check_map(fd, var) == ERROR)
+	if (check_map(map_file, var) == ERROR)
 		return (ERROR);
-	fd = close(fd);
-	col_len = count_columns(map_file);
-	if (col_len == ERROR)
+	if ((var->cols = count_columns(map_file)) == ERROR)
 		return (ERROR);
-	collect_xyz_data(var, map_file, col_len);
+	collect_xyz_data(var, map_file, var->cols);
 	return (VALID);
 }

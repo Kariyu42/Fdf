@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:55:49 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/06 11:38:32 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:41:53 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@
 # define ERROR 1
 # define VALID 0
 # define END_INT -1
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1440
+# define HEIGHT 800
+/* Colors */
+# define WHITE 0xFFFFFF
+# define RED 0xFF0000
+# define GREEN 0x00FF00
+# define BLUE 0x0000FF
 
 /* Struct */
 typedef struct s_point
@@ -31,8 +36,8 @@ typedef struct s_data
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		line_len;
 	int		endian;
 }	t_data;
 
@@ -40,9 +45,10 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	t_data	*image;
+	t_data	image;
 	t_point	**map;
 	int		rows;
+	int		cols;
 }	t_mlx;
 
 /* Library */
@@ -59,9 +65,16 @@ int		save_map_figures(t_mlx *var, char *map_file);
 int		count_columns(char *filename);
 void	free_split(char **split);
 void	collect_xyz_data(t_mlx *var, char *filename, int columns);
+
 /* Drawing utils */
-void	draw_map(t_mlx *var);
+void	start_drawing(t_mlx *var, t_point start, t_point end);
+t_point	get_point(int x, int y);
+
 /* print; to be removed... */
 void	print_saved_figures(int *map, int len);
+
+/* error management */
+int	free_line(char *line, int ret);
+int	fail_open_file(int error);
 
 #endif
