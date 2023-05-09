@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:55:49 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/08 15:41:53 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:51:23 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 # define HEIGHT 800
 /* Colors */
 # define WHITE 0xFFFFFF
-# define RED 0xFF0000
-# define GREEN 0x00FF00
-# define BLUE 0x0000FF
 
 /* Struct */
 typedef struct s_point
@@ -45,7 +42,7 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	t_data	image;
+	t_data	imag;
 	t_point	**map;
 	int		rows;
 	int		cols;
@@ -67,14 +64,16 @@ void	free_split(char **split);
 void	collect_xyz_data(t_mlx *var, char *filename, int columns);
 
 /* Drawing utils */
-void	start_drawing(t_mlx *var, t_point start, t_point end);
+void	start_drawing(t_mlx *v);
 t_point	get_point(int x, int y);
 
 /* print; to be removed... */
 void	print_saved_figures(int *map, int len);
 
-/* error management */
-int	free_line(char *line, int ret);
-int	fail_open_file(int error);
+/* error management and free functions */
+int		free_line(char *line, int ret);
+int		fail_open_file(int error);
+void	std_out_err(char *map_file);
+
 
 #endif

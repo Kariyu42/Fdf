@@ -6,16 +6,16 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:31:56 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/08 15:38:40 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:52:41 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf.h"
+#include "fdf.h"
 
 void	print_saved_figures(int *map, int len)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < len)
 	{
@@ -95,7 +95,7 @@ static int	check_invalid_map(char *file)
 int	save_map_figures(t_mlx *var, char *map_file)
 {
 	if (check_invalid_map(map_file) == ERROR)
-		return (ERROR);
+		return (std_out_err(map_file), ERROR);
 	if (check_map(map_file, var) == ERROR)
 		return (ERROR);
 	if ((var->cols = count_columns(map_file)) == ERROR)

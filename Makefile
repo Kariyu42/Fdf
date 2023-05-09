@@ -6,7 +6,7 @@
 #    By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/25 14:06:13 by kquetat-          #+#    #+#              #
-#    Updated: 2023/05/08 15:34:35 by kquetat-         ###   ########.fr        #
+#    Updated: 2023/05/09 16:21:35 by kquetat-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ CHAMPAGNE	=	\033[38;5;224m
 
 ### Debug ###
 ifdef DEBUG
-CFLAGS	+=	-fsanitize=address -g3
+CFLAGS	+=	-fsanitize=address -g
 endif
 
 ### Loading Bar ###
@@ -51,9 +51,9 @@ OFLAGS	=	-L$(LIBMLX) -lmlx -framework OpenGL -framework AppKit
 
 RM	=	rm -f
 
-%.o: %.c
+%.o: %.c ${HEADER}
 	@$(eval COUNTER = $(shell expr $(COUNTER) + 1))
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I${HEADER} -c $< -o $@
 	@echo " $(PALEBLUE)$(BOLD)$(ITALIC) Loading [$(LGREEN)FDF$(PALEBLUE)]: $(RESET)"
 	@printf "\t\t\t$(BOLD)$(PALEBLUE)[$(BEIGE)%-27.$(BAR)s$(PALEBLUE)] %d/%d [%d%%]$(RESET)" "===========================" $(COUNTER) $(TOTAL_SRCS) $(PERCENT)
 	@echo "$(CUR_UP)$(CUR_UP)"
