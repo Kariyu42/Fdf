@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:46:16 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/09 20:43:56 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/10 10:40:27 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,8 @@ static t_point	*parse_line(char *tmp, int columns, int y_axis)
 		//printf("%d, %d, [%d]\n", table[i].x, table[i].y, table[i].z);
 		i++;
 	}
-	table[i].x = -1;
 	free_split(split);
 	free(tmp);
-	puts("line parsed");
 	return (table);
 }
 
@@ -82,7 +80,7 @@ void	collect_xyz_data(t_mlx *var, char *filename, int columns)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		exit(EXIT_FAILURE);
-	var->map = malloc(sizeof(t_point *) * var->rows + 1);
+	var->map = malloc(sizeof(t_point *) * var->info.num_px);
 	if (!var->map)
 		exit(EXIT_FAILURE);
 	while (1)
@@ -90,10 +88,8 @@ void	collect_xyz_data(t_mlx *var, char *filename, int columns)
 		tmp = get_next_line(fd);
 		if (!tmp)
 			break ;
-		printf("line %d parsed\n", i);
 		var->map[i] = parse_line(tmp, columns, i);
 		i++;
 	}
-	puts("map parsed");
 	close (fd);
 }

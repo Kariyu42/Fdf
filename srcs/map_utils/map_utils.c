@@ -6,25 +6,11 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:31:56 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/09 20:36:02 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/10 10:40:03 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	print_saved_figures(int *map, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		ft_printf("%d ", map[i]);
-		i++;
-	}
-	ft_printf("\n");
-}
-/* function at the top must be removed before push */
 
 static int	check_coordinates(char *number)
 {
@@ -53,7 +39,7 @@ static int	line_coordinates(char *line)
 			return (ERROR);
 		i++;
 	}
-	free_split(map_part); // free map_part
+	free_split(map_part);
 	return (VALID);
 }
 
@@ -73,7 +59,7 @@ static int	check_map(char *map, t_mlx *var)
 		if (line_coordinates(line) == ERROR)
 			return (free_line(line, ERROR));
 		free(line);
-		var->rows += 1;
+		var->info.num_px += 1;
 	}
 	fd = close(fd);
 	return (VALID);
@@ -94,16 +80,12 @@ static int	check_invalid_map(char *file)
 
 int	save_map_figures(t_mlx *var, char *map_file)
 {
-	puts("save_map_figures");
 	if (check_invalid_map(map_file) == ERROR)
 		return (std_out_err(map_file), ERROR);
 	if (check_map(map_file, var) == ERROR)
 		return (ERROR);
-	puts("check_map OK");
-	if ((var->cols = count_columns(map_file)) == ERROR)
+	if ((var->info.num_py = count_columns(map_file)) == ERROR)
 		return (ERROR);
-	puts("count_columns OK");
-	collect_xyz_data(var, map_file, var->cols);
-	puts("collect_xyz_data OK");
+	collect_xyz_data(var, map_file, var->info.num_py);
 	return (VALID);
 }

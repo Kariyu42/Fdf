@@ -112,4 +112,12 @@ unsigned int color = mlx_get_color_value(mlx_ptr, 0xFF0000); // red color
 *(unsigned int *)(img_data + pixel_index) = color;
 ```
 
+# FdF
 
+## Distance entre 2 points
+- Doit faire en fonction de la taille de l'ecran, <br>
+WIDTH / 2 / (nb de point) = echelle WIDTH.
+HEIGHT / 2 / (nb de point) = echelle HEIGHT.
+stocké l'echelle qui sera ensuite multiplié avec tout les point pour placé les points.
+
+## D'abord placé tout les points:

@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:55:49 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/09 16:51:23 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/10 12:56:39 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define ERROR 1
 # define VALID 0
-# define END_INT -1
 # define WIDTH 1440
 # define HEIGHT 800
 /* Colors */
@@ -38,14 +37,20 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
+typedef struct s_mapinfo
+{
+	int	scale;
+	int	num_px;
+	int	num_py;
+}	t_mapinfo;
+
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*win;
-	t_data	imag;
-	t_point	**map;
-	int		rows;
-	int		cols;
+	void		*mlx;
+	void		*win;
+	t_data		data;
+	t_point		**map;
+	t_mapinfo	info;
 }	t_mlx;
 
 /* Library */
@@ -67,13 +72,9 @@ void	collect_xyz_data(t_mlx *var, char *filename, int columns);
 void	start_drawing(t_mlx *v);
 t_point	get_point(int x, int y);
 
-/* print; to be removed... */
-void	print_saved_figures(int *map, int len);
-
 /* error management and free functions */
 int		free_line(char *line, int ret);
 int		fail_open_file(int error);
 void	std_out_err(char *map_file);
-
 
 #endif
