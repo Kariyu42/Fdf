@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 10:28:37 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/09 17:03:31 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/09 20:33:41 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void define_start_point(t_mlx *v)
 
 void	start_drawing(t_mlx *v)
 {
-	t_point	start;
-
-	start = get_point(0, 0);
+	//t_point	start;
+	puts("aaa");
+	//start = get_point(0, 0);
 	// fonction qui definit le point de depart
 	define_start_point(v);
 	//put_all_dots();

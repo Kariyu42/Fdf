@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 18:46:16 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/08 15:38:57 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/09 20:43:56 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static t_point	*parse_line(char *tmp, int columns, int y_axis)
 	table[i].x = -1;
 	free_split(split);
 	free(tmp);
+	puts("line parsed");
 	return (table);
 }
 
@@ -77,17 +78,22 @@ void	collect_xyz_data(t_mlx *var, char *filename, int columns)
 	int		fd;
 	char	*tmp;
 
-	i = -1;
+	i = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		exit(EXIT_FAILURE);
 	var->map = malloc(sizeof(t_point *) * var->rows + 1);
 	if (!var->map)
 		exit(EXIT_FAILURE);
-	while (++i < var->rows)
+	while (1)
 	{
 		tmp = get_next_line(fd);
+		if (!tmp)
+			break ;
+		printf("line %d parsed\n", i);
 		var->map[i] = parse_line(tmp, columns, i);
+		i++;
 	}
+	puts("map parsed");
 	close (fd);
 }

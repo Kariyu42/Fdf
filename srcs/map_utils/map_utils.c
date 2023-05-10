@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:31:56 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/09 16:52:41 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/09 20:36:02 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,16 @@ static int	check_invalid_map(char *file)
 
 int	save_map_figures(t_mlx *var, char *map_file)
 {
+	puts("save_map_figures");
 	if (check_invalid_map(map_file) == ERROR)
 		return (std_out_err(map_file), ERROR);
 	if (check_map(map_file, var) == ERROR)
 		return (ERROR);
+	puts("check_map OK");
 	if ((var->cols = count_columns(map_file)) == ERROR)
 		return (ERROR);
+	puts("count_columns OK");
 	collect_xyz_data(var, map_file, var->cols);
+	puts("collect_xyz_data OK");
 	return (VALID);
 }
