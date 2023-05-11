@@ -6,13 +6,14 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:55:49 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/10 12:56:39 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:44:02 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+# define KEY_PRESS 2
 # define ERROR 1
 # define VALID 0
 # define WIDTH 1440

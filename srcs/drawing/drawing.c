@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 10:28:37 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/10 14:06:53 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:56:10 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ t_point	get_point(int x, int y)
 	return (dot);
 }
 
-/* the start_drawing function is a function which has a while loop to draw the map
-	point by point using the Bresenham's line algorithm.
-	*/
-
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -33,18 +29,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-/*static void define_start_point(t_mlx *v)
-{
-	v->map[0][0].x += WIDTH / 2;
-	v->map[0][0].y += 20;
-	my_mlx_pixel_put(&v->imag, v->map[0][0].x, v->map[0][0].y, WHITE);
-	mlx_put_image_to_window(v->mlx, v->win, v->imag.img, 0, 0);
-}*/
-
 static void	add_scale(int scale, t_mlx **v)
 {
 	int	i;
 	int	j;
+	int	mid_x;
+	int	mid_y;
 
 	i = 0;
 	while (i < (*v)->info.num_px)
@@ -58,6 +48,9 @@ static void	add_scale(int scale, t_mlx **v)
 		}
 		i++;
 	}
+	mid_x = (*v)->info.num_px / 2;
+	mid_y = (*v)->info.num_py / 2;
+	
 }
 
 static void	place_dots(t_mlx **v)
@@ -79,7 +72,6 @@ static void	place_dots(t_mlx **v)
 		x++;
 	}
 	mlx_put_image_to_window((*v)->mlx, (*v)->win, (*v)->data.img, 0, 0);
-	mlx_loop((*v)->mlx);
 }
 
 void	start_drawing(t_mlx *v)
@@ -88,6 +80,6 @@ void	start_drawing(t_mlx *v)
 		v->info.scale = WIDTH / 2 / v->info.num_px;
 	else
 		v->info.scale = HEIGHT / 2 / v->info.num_py;
-	add_scale(v->info.scale, &v); // add all x,y scale and correct positioning for iso projection
+	add_scale(v->info.scale, &v);
 	place_dots(&v);
 }

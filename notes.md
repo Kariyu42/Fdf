@@ -112,6 +112,36 @@ unsigned int color = mlx_get_color_value(mlx_ptr, 0xFF0000); // red color
 *(unsigned int *)(img_data + pixel_index) = color;
 ```
 
+# mlx_hook
+
+- la fonction mlx_hook nous permet de definir une fonction de rappel qui sera appelee lorsque l'utilisateur appuie sur une touche. Cette fonction de rappel prendra en arguments les infos relatives a l'evenement clavier.
+```c++
+#include "mlx.h"
+#include <stdlib.h>
+
+int my_key_press(int keycode)
+{
+    if (keycode == 53) // touche "Echap"
+        exit(0);
+    return (0);
+}
+
+int main()
+{
+	void *mlx_ptr;
+	void *win_ptr;
+
+	mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "Ma fenetre");
+
+	mlx_hook(win_ptr, 2, 1L<<0, &my_key_press, NULL); // appel de la fonction my_key_press lorsqu'une touche est appuyée
+
+	mlx_loop(mlx_ptr);
+
+	return (0);
+}
+```
+
 # FdF
 
 ## Distance entre 2 points
@@ -121,3 +151,4 @@ HEIGHT / 2 / (nb de point) = echelle HEIGHT.
 stocké l'echelle qui sera ensuite multiplié avec tout les point pour placé les points.
 
 ## D'abord placé tout les points:
+une fois les points placé, ajuster leur position dans un bon endroit dans la fenetre.
