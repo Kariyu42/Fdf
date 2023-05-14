@@ -6,7 +6,7 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:55:49 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/11 17:44:02 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/14 14:35:17 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define KEY_PRESS 2
 # define ERROR 1
 # define VALID 0
-# define WIDTH 1440
-# define HEIGHT 800
+# define WIDTH 1080
+# define HEIGHT 720
 /* Colors */
 # define WHITE 0xFFFFFF
 
@@ -70,8 +70,12 @@ void	free_split(char **split);
 void	collect_xyz_data(t_mlx *var, char *filename, int columns);
 
 /* Drawing utils */
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	init_struct(t_mlx *v);
 void	start_drawing(t_mlx *v);
 t_point	get_point(int x, int y);
+void	apply_rotation(t_mlx **v);
+void	ft_bresenham(t_point start, t_point end, t_data *data);
 
 /* error management and free functions */
 int		free_line(char *line, int ret);

@@ -6,13 +6,13 @@
 /*   By: kquetat- <kquetat-@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:21:41 by kquetat-          #+#    #+#             */
-/*   Updated: 2023/05/11 18:47:38 by kquetat-         ###   ########.fr       */
+/*   Updated: 2023/05/12 21:26:56 by kquetat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	close_window(int keycode, t_mlx *v)
+int	close_window(int keycode, t_mlx *v)
 {
 	if (keycode == 53)
 	{
@@ -22,7 +22,7 @@ static int	close_window(int keycode, t_mlx *v)
 	return (0);
 }
 
-static int	red_cross(t_mlx *v)
+int	red_cross(t_mlx *v)
 {
 	mlx_destroy_window(v->mlx, v->win);
 	exit(EXIT_SUCCESS);
